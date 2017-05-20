@@ -1,15 +1,20 @@
 Install NodeJs for your platform https://nodejs.org/en/download/package-manager/
 then
-
 ```bash
 $ sudo npm install -g ionic cordova && npm install
 ```
-for IOS build
 
+for live view in browser
+```bash
+$ ionic serve
+```
+
+for IOS build
 ```bash
 $ ionic cordova platform add ios
 $ ionic cordova build ios
 ```
+
 for Android build
 ```bash
 $ ionic cordova platform add android
