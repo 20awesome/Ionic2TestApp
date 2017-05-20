@@ -18,7 +18,7 @@ $ ionic cordova build ios
 for Android build
 ```bash
 $ ionic cordova platform add android
-$ ionic cordova build ios
+$ ionic cordova build android
 ```
 
 Substitute ios for android if not on a Mac.
