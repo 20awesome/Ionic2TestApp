@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+    <ion-title>
+      Add New Company
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+      <form (ngSubmit)="logForm()">
+
+<ion-list>
+
+  <ion-item>
+    <ion-label floating>Company Name</ion-label>
+    <ion-input [ngModelOptions]="{standalone: true}" [(ngModel)]="companyName" type="text"></ion-input>
+  </ion-item>
+
+  <ion-tags-input [ngModelOptions]="{standalone: true}" [(ngModel)]="tags"  [once]="'true'"></ion-tags-input>
+</ion-list>
+      <button ion-button [disabled]="!canActivate()"  (click)="logForm()" type="button" block>Add Company</button>
+
+    </form>
+
+</ion-content>

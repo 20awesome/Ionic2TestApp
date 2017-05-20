@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+    <ion-buttons start>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="AddCompany()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      Companies
+    </ion-title>
+
+
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="CompanyFilter" placeholder="Company name or goods"></ion-searchbar>
+  <h3 *ngIf="usersError">Trouble with internet connection</h3>
+  <ion-content *ngIf="usersError" padding>
+    <button ion-button block (click)="loadUsers()">Try Again</button>
+  </ion-content>
+
+  <ion-list>
+    <ion-item>
+      <div *ngIf="(companies | CompaniesNameAndGoodsFilter:CompanyFilter).length === 0">
+        "No matches for companies or goods"
+      </div>
+
+    </ion-item>
+    <ion-item-sliding #item *ngFor="let company of companies|CompaniesNameAndGoodsFilter:CompanyFilter" >
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img [src]="company.logo" onError="this.src='assets/companies/default_logo.jpg'">
+        </ion-avatar>
+
+        <p (click)="goToDetails(company.companyName)">{{ company.companyName }}</p>
+        <ion-badge item-right>{{company.companyGoods.length}}</ion-badge>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button (click)="goToDetails(company.companyName)">Edit</button>
+        <button ion-button color="danger" (click)="showConfirm(company.companyName)">Delete</button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

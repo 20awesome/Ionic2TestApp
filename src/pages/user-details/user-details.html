@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{companyName}}'s details</ion-title>
+    <ion-buttons start>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showConfirm(companyName)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3 *ngIf="usersError">Trouble with internet connection</h3>
+  <ion-content *ngIf="usersError" padding>
+    <button ion-button block (click)="loadUser()">Try Again</button>
+  </ion-content>
+
+  <ion-card *ngIf="company">
+
+    <img [src]="company.logo" onError="this.src='assets/companies/default_logo.jpg'" class="img-circle">
+
+    <ion-card-content>
+      <ion-card-title>
+        {{company.companyName}}
+      </ion-card-title>
+      <p *ngIf="company && company.desc">
+        {{company.desc}}
+      </p>
+    </ion-card-content>
+
+
+    <ion-tags-input [(ngModel)]="tags" (onChange)="onChange($event)" [once]="'true'"></ion-tags-input>
+
+  </ion-card>
+</ion-content>
